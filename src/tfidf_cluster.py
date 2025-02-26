@@ -5,8 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from src.pre_process import clean_text
 
 
-def cluster_blogs(file_path, num_clusters=5):
-    df = pd.read_csv(file_path)
+def cluster_blogs(df, num_clusters=5):
     df["cleaned_text"] = df["blog_text"].apply(clean_text)
 
     vectorizer = TfidfVectorizer(max_features=1000)
