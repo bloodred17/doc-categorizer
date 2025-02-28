@@ -1,6 +1,6 @@
 from src.preprocessor import preprocess_text_alphanumeric
 from src.text_extractors import extract_text_from_pdf
-from src.cluster import cluster_tfid_kmeans, cluster_bert_kmeans
+from src.cluster import cluster_tfid_kmeans, cluster_bert_kmeans, cluster_bert_huggingface
 
 if __name__ == "__main__":
     # file_path = "data/sample_blogs.csv"  # Replace with actual dataset path
@@ -9,7 +9,7 @@ if __name__ == "__main__":
     pdfs = [
         "data/CapitalCall.pdf",
         "data/Cap Call3.pdf",
-        "data/capitalcall1.pdf",
+        "data/Rent Roll Sample Asset ABC.pdf",
         "data/CapitalCall2.pdf",
         "data/LPA.pdf",
         "data/LPA 1.pdf",
@@ -32,6 +32,11 @@ if __name__ == "__main__":
     print("===== BERT Embeddings + KMeans Clusters =====")
     for i, pdf_path in enumerate(pdfs):
         print(f"Document: {pdf_path} -> Cluster {bert_kmeans_labels[i]}")
+    print()
+    bert_kmeans_labels1 = cluster_bert_huggingface(documents, 5)
+    print("===== BERT(HF) Embeddings + KMeans Clusters =====")
+    for i, pdf_path in enumerate(pdfs):
+        print(f"Document: {pdf_path} -> Cluster {bert_kmeans_labels1[i]}")
     print()
 
 
