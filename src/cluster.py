@@ -17,3 +17,13 @@ def cluster_bert_kmeans(docs, num_clusters=5):
     embeddings = model.encode(docs)
     model = KMeans(n_clusters=num_clusters, random_state=42)
     return model.fit_predict(embeddings)
+
+
+def cluster_bert_huggingface(docs, num_clusters=5):
+    # Load a SentenceTransformer model (which wraps a Hugging Face model)
+    model = SentenceTransformer("bert-base-uncased")
+    embeddings = model.encode(docs)
+
+    # Perform KMeans clustering
+    kmeans = KMeans(n_clusters=num_clusters, random_state=42)
+    return kmeans.fit_predict(embeddings)
